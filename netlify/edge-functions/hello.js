@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 
 
 export default async (request) => {
@@ -6,7 +5,7 @@ export default async (request) => {
     const prompt = data.prompt;
 
     
-    
+    // switch to products
 
     const response = { result: `Processed: ${prompt}` };  // Example response
 
