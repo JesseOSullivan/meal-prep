@@ -1,0 +1,25 @@
+.heal {
+    // background: red;
+}
+
+.container{
+    width: 80vw;
+    padding: 4rem 0rem;
+    // border: 2px solid red;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr max-content;
+    gap: 1rem;
+}
+
+.content {
+    background: #2C333A;
+    padding: 1rem;
+    color: white;
+}
+
+.input{
+    grid-row: 2;
+    background: #2C333A;
+    color: white;
+}

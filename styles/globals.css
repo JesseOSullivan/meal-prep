@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -32,4 +32,23 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+} */
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  /*border: 2px solid red;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 2px solid blue; */
+  min-height: 100vh;
+  background: #21262B;
 }
