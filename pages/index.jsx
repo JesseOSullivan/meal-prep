@@ -1,12 +1,15 @@
 import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
+import Image from 'next/image'
+
+import styles from "@styles/index.module.scss"
 
 export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Next.js Starter!</title>
+        <title>Meal Prep App</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,13 +18,14 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+        <Header />
+        <img className={styles.icon} src="https://media.discordapp.net/attachments/857511147879137310/1129644501737144330/icon.png?width=675&height=675" alt="" />
+        
+        <h1 className={styles.title}>Find Your Meal Prep</h1>
+        
       </main>
 
-      <Footer />
+      
     </div>
   )
 }
