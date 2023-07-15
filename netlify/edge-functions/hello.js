@@ -6,7 +6,6 @@ export default async (request) => {
 
     // get products 
     
-    await gpt({req:{request} })
     
     // switch to products
 
