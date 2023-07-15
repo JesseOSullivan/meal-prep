@@ -5,10 +5,14 @@ export async function handler(event) {
     const prompt = data.prompt;
 
     // get products 
+    const messages = [
+        { role: 'system', content: 'you are afood recipe expert.' },
+        { role: 'user', content: 'hwo to make tacos' },
+      ];
 
-    const result = await gptFetch({ prompt: "tell a story" });
+    const result = await gptFetch({ prompt: messages });
 
-    // switch to products
+    // switch to productss
 
     return {
         statusCode: 200,
