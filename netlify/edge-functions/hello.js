@@ -3,7 +3,7 @@ export default async (request) => {
     const prompt = data.prompt;
 
     const gptFetch = async ({ req }) => {
-        const api_key = 'YOUR_OPENAI_API_KEY';  // Replace with your API key
+        const api_key = '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'
 
         const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
             method: 'POST',
