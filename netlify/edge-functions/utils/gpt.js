@@ -1,29 +1,25 @@
-import { Configuration, OpenAIApi } from "openai";
 
 export const gptFetch = async ({ req }) => {
-    const configuration = new Configuration({
-        organization: "org-FPcuX6gKViWJhi1GIrrvw01S",
-        apiKey: process.env.OPENAI_API_KEY,
+    const api_key = process.env.OPENAI_API_KEY;  // Replace with your API key
+
+    const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${api_key}`
+        },
+        body: JSON.stringify({
+            prompt: req,
+            max_tokens: 60,
+        }),
     });
-    const openai = new OpenAIApi(configuration);
-    
-    try {
-        const res = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [{ role: "user", content: "Hello" }],
-        });
 
-        console.log(res.data.choices[0].message.content);
-        
-        // Prepare the response
-        const response = { result: res.data.choices[0].message.content };
-        return response;
-
-    } catch (e) {
-        console.log(e);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return null;  // Return null or a default value in case of an error
+    const data = await response.json();
+    console.log(data.choices[0].text);
+
+    return data.choices[0].text;
 };
-
-
