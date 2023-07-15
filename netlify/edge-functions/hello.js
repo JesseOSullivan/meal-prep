@@ -1,4 +1,4 @@
-
+const {gpt} = require('./utils/gpt');
 
 export default async (request) => {
     const data = await request.json();  // Assuming the request has JSON payload
@@ -6,6 +6,8 @@ export default async (request) => {
 
 
     // get products 
+    
+    await gpt({req:{request} })
     
     // switch to products
 
