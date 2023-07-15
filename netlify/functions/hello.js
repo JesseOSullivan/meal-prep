@@ -6,7 +6,7 @@ export async function handler(event) {
 
     // get products 
 
-    const result = await gptFetch({ prompt: "test please" });
+    const result = await gptFetch({ prompt: "tell a story" });
 
     // switch to products
 
