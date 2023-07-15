@@ -1,4 +1,4 @@
-import gptFetch from './utils/gpt';
+import gptFetch from './utils/gpt.js';
 export default async (request) => {
     const data = await request.json();  // Assuming the request has JSON payload
     const prompt = data.prompt;
