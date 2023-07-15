@@ -1,4 +1,4 @@
-
+import styles from "@styles/default.module.scss";
  
 export default function Planner({ children }) {
 //   const { data, error } = useSWR('/api/navigation', fetcher)
@@ -9,7 +9,7 @@ export default function Planner({ children }) {
   return (
     <>
       <div>
-        <p>hello</p>
+        <p className={styles.heal} >hello</p>
       </div>
     </>
   )
