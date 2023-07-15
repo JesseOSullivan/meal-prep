@@ -1,10 +1,7 @@
 export default async (request) => {
+    const test = {test:"test"};
 
-
-    test = {test:"test"}
-    
-    return new Response.json(test, {
-      headers: { "content-type": "text/html" },
+    return new Response(test, {
+        headers: { "content-type": "application/json" },
     });
-  };
-  
+};
