@@ -1,4 +1,7 @@
-export default () => new Response("Hello world");
-
-export const config = { path: "/test" };
+export const handler = async (event, context) => {
+    return {
+        statusCode: 200,
+        body: 'Hello, World!'
+    };
+};
 
