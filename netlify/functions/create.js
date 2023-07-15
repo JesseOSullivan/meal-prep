@@ -1,4 +1,4 @@
-const { faunaFetch } = require('../edge-functions/utils/fauna');
+const { faunaFetch } = require('./utils/fauna');
 
 exports.handler = async (event, ) => {
   const { product } = JSON.parse(event.body);
