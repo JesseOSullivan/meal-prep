@@ -1,0 +1,9 @@
+type Product {
+  productID: ID!
+  productName: String!
+}
+
+type Query {
+  getProductByName(productName: String!): Product!
+  getProductByID(productID: ID!): Product!
+}
