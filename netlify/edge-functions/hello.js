@@ -1,3 +1,4 @@
+const { gptFetch } = require('./utils/gpt');
 
 export default async (request) => {
     const data = await request.json();  // Assuming the request has JSON payload
@@ -6,6 +7,7 @@ export default async (request) => {
 
     // get products 
     
+    await gptFetch({req:"testing"})
     
     // switch to products
 

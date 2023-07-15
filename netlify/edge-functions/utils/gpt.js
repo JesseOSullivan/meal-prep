@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
 
-export const gpt = async ({ req }) => {
+export const gptFetch = async ({ req }) => {
     const configuration = new Configuration({
         organization: "org-FPcuX6gKViWJhi1GIrrvw01S",
         apiKey: process.env.OPENAI_API_KEY,
