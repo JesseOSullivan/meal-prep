@@ -1,4 +1,10 @@
-export default () => new Response("Hello world");
+export default async (request) => {
 
-export const config = { path: "/test" };
 
+    test = {test:"test"}
+    
+    return new Response.json(test, {
+      headers: { "content-type": "text/html" },
+    });
+  };
+  
