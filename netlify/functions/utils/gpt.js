@@ -1,25 +1,35 @@
+const axios = require('axios');
 
-exports.gptFetch = async ({ req }) => {
-    const api_key = process.env.OPENAI_API_KEY;  // Replace with your API key
+exports.gptFetch = async ({ prompt }) => {
+    const apiKey = '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'  // Replace with your API key
 
-    const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${api_key}`
-        },
-        body: JSON.stringify({
-            prompt: req,
-            max_tokens: 60,
-        }),
-    });
+    const endpoint = 'https://api.openai.com/v1/chat/completions'
+    
+    try {
+    
+            const response = await axios.post(
+              endpoint,
+              {
+                model: 'gpt-3.5-turbo',
+                messages: prompt
+        
+              },
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + apiKey,
+                },
+              }
+            );
+        
+            console.log('GPT-3 response:', response.data.choices[0].message.content);
+            return response.data.choices[0].message.content
+        
+          } catch (error) {
+            console.error(error);
+          }
+        };
 
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
 
-    const data = await response.json();
-    console.log(data.choices[0].text);
 
-    return data.choices[0].text;
-};
+
