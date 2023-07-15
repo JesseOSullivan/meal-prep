@@ -1,5 +1,5 @@
 
-const gptFetch = async ({ req }) => {
+exports.gptFetch = async ({ req }) => {
     const api_key = process.env.OPENAI_API_KEY;  // Replace with your API key
 
     const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
