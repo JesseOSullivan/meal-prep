@@ -12,23 +12,28 @@ import Text from "@components/text";
 
 export default function Chat({ children }) {
 
+  // Initiate with a welcome message
   const startMsg = {owner:"GPT", text:"Welcome! Please ask below for the type of meal prep plan you would like"}
 
-  //   const { data, error } = useSWR('/api/navigation', fetcher)
+  // UseState Variables
   const [loading, setLoading] = useState(false)
   const [query, setQuery] = useState('')
   const [output, setOutput] = useState('Just ask me for help with your meal prep!')
   const [messages, setMessages] = useState([startMsg])
 
+  // Constants
   const ENDPOINT = "https://meal-prep.onrender.com/recipe"
 
+  // Helper Functions
   const addReply = (reply) => {
     setMessages(messages => [...messages, { owner:"GPT", text:reply }])
   }
 
+  // Request Function
+
   const postRequest = async (message) => {
     try {
-      setMessages(messages => [...messages, { owner:"GPT", text:"Generating a plan... please wait" }])
+      addReply("Generating a plan... please wait... (this could take a moment)")
 
       const content = {content: message}
       const response = await fetch(ENDPOINT, {
@@ -47,43 +52,23 @@ export default function Chat({ children }) {
       
       const data = await response.json()
       
-      console.log(response)
-      console.log(data)
+      // Handle Data
       if (data) {
+        addReply("Let's get started, you will need the following ingredients:")
 
-          addReply("Let's get started, you will need the following ingredients:")
+        data.products.map((product) => {
+          console.log(product)
+          addReply(product.name)
+        })
 
-          if (data.ingredients) {
-            console.log(data)
-          } else if (data.products) {
-            console.log(data)
-          }
-          
-          // for (ingredient in data.ingredients) {
-          //   console.log(ingredient.name)
-          //   addReply("Something here")
-          //   //addReply(`You will need ${ingredient.name}`)
-          //   //setMessages(messages => [...messages, { owner:"GPT", text:data }])
-          // }
-
-         // add to messages
-        // let messagesarray = messages
-        // setMessages(messagesarray.pop())
-        setMessages(messages => [...messages, { owner:"GPT", text:data }])
-      }
-      return data
+        addReply(stringify(data))
+      } 
 
     } catch (error) {
       console.error(error)
-      // let messagesarray = messages
-      // setMessages(messagesarray.pop())
-      //setMessages(messages => [...messages, { owner:"GPT", text:"There was a problem when handling your request." }])
-      addReply("There was a problem handling your request.")
+      
     }
   }
-
-
-  //
 
   const handlePrompt = (e) => {
     setQuery(e.target.value)
@@ -101,7 +86,6 @@ export default function Chat({ children }) {
       // fetch from endpoint
       const feedback = postRequest(query)
       
-
       //setOutput(query)
     }, 200);
     
