@@ -8,12 +8,44 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import imageGPT from "../public/gpt.jpg"
 import { useState } from "react";
+import Text from "@components/text";
 
 export default function Chat({ children }) {
   //   const { data, error } = useSWR('/api/navigation', fetcher)
   const [loading, setLoading] = useState(false)
   const [query, setQuery] = useState('')
   const [output, setOutput] = useState('Just ask me for help with your meal prep!')
+  const [messages, setMessages] = useState([])
+
+  const ENDPOINT = "https://meal-prep.onrender.com/recipe"
+
+  const postRequest = async (message) => {
+    try {
+      const content = {content: message}
+      const response = await fetch(ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify(content)
+      }) 
+
+      if (!response.ok) {
+        throw new Error('Something went wrong')
+      }
+      
+      const data = await response.json()
+      console.log(data)
+      if (data) {
+         // add to messages
+        setMessages(messages => [...messages, { owner:"GPT", text:data }])
+      }
+      return data
+
+    } catch (error) {
+      console.error(error)
+      setMessages(messages => [...messages, { owner:"GPT", text:"There was a problem when handling your request." }])
+    }
+  }
+
+  //
 
   const handlePrompt = (e) => {
     setQuery(e.target.value)
@@ -22,10 +54,17 @@ export default function Chat({ children }) {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    setMessages(messages => [...messages, { owner:"me", text:query }])
+
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      setOutput(query)
+      
+      // fetch from endpoint
+      const feedback = postRequest(query)
+      
+
+      //setOutput(query)
     }, 1000);
     
   }
@@ -38,13 +77,11 @@ export default function Chat({ children }) {
   return (
     <section className={styles.container}>
         <div className={styles.content}>
-          
-
           <ul>
-            <li>
-              <img src="https://cdn.discordapp.com/attachments/857511147879137310/1129629419712036884/gpt.jpg" alt="" />
-              <p>{loading ? "Thinking ..." : output}</p>
-            </li>
+            { messages?.map(({owner, text}, index) => (
+                <Text key={index} owner={owner} content={text} />
+            ))
+            }
           </ul>
         </div>
         <form onSubmit={handleSubmit} className={styles.inputWrapper}>
