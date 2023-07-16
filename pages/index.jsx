@@ -26,7 +26,7 @@ export default function Home() {
         <h1 className={styles.title}>Meal Ninja</h1>
         </div>
         <a href="/chat">
-        <Button variant="contained">Go To App</Button>
+        <Button variant="contained">Start Meal Planning</Button>
         </a>
         
         

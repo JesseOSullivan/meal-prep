@@ -52,21 +52,44 @@ export default function Chat({ children }) {
       
       const data = await response.json()
       
+      console.log(data)
+
       // Handle Data
       if (data) {
-        addReply("Let's get started, you will need the following ingredients:")
+        
+        if (data.products) {
+          addReply("Let's get started, you will need the following ingredients:")
+          let foodList = ""
+          data.products.map((product, index) => {
+            //console.log(product)
+            let msg = ""
+            msg += `${index+1}. ${product.name}, `
+            if (product.amt) {
+              msg += `amount needed: ${product.amt}. `
+            } else if (product.amount) {
+              msg += `amount needed: ${product.amount}. `
+            }
+            if (product.link) {
+              msg += `link here: ${product.link}`
+            }
+            addReply(msg)
+          })
+        } else {
+          addReply("Something went wrong and we could not get a list of ingredients")
+        }
+        
+        if (data.instructions) {
+          addReply("Now, follow these steps:")  
+          addReply(data.instructions)
+        }
+        //addReply(foodList)
 
-        data.products.map((product) => {
-          console.log(product)
-          addReply(product.name)
-        })
-
-        addReply(stringify(data))
+        //addReply(stringify(data))
       } 
 
     } catch (error) {
       console.error(error)
-      
+      addReply('Something went wrong')
     }
   }
 
