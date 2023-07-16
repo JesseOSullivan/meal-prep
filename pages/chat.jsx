@@ -24,6 +24,11 @@ export default function Chat({ children }) {
       const content = {content: message}
       const response = await fetch(ENDPOINT, {
         method: "POST",
+        headers: {
+          "Accept": "*/*",
+          "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+          "Content-Type": "application/json"
+         },
         body: JSON.stringify(content)
       }) 
 
@@ -44,6 +49,7 @@ export default function Chat({ children }) {
       setMessages(messages => [...messages, { owner:"GPT", text:"There was a problem when handling your request." }])
     }
   }
+
 
   //
 
