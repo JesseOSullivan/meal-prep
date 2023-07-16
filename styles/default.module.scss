@@ -2,7 +2,7 @@
     width: 80vw;
     padding: 4rem 0rem;
     // border: 2px solid red;
-    min-height: 100vh;
+   height: 100%;
     display: grid;
     grid-template-rows: 1fr max-content;
     gap: 1rem;
@@ -25,19 +25,35 @@
         list-style: none;
         padding: 0;
         gap: 1rem;  
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        //grid-template-columns: 1fr;
+        max-height: 48vh;
+        overflow-y: scroll;
+        //border: 1px solid red;  
+        background: #20252b;
+        padding: 1rem;
+        min-height: 95%;
         li {
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: row;
             gap: 1rem;
+           // border: 1px solid blue;
+            height: fit-content;
+            place-content: center start;
+        
             img {
-                width: 32px;
+                width: 48px;
+                object-fit: scale-down;
+                place-self: start;
             }
             p  {
                 color: #eee;
+                //border: 1px solid red;
+                height: fit-content;
+                place-self: center;
             }
         }
     }

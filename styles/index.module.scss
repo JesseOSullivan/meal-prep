@@ -4,7 +4,36 @@
     //box-shadow : 3px 6px 12px rgba(0,0,0,0.2);
 }
 
+.logo {
+    //border: 1px solid red;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
 
 .title{
-    font-size: 6rem;
+    font-size: 3rem;
+    margin: 0; 
+    padding: 0;
+}
+
+.header{
+    background: rgb(10, 10, 20);
+    width: 100vw;
+    height: 25vh;
+    padding: 2rem;
+
+    .icon{
+        //height: 80%;   
+        object-fit: scale-down;
+        width: fit-content;
+        border: 3px solid lime;
+    }
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+    max-height: 100vh;
 }

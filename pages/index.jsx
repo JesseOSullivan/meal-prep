@@ -4,6 +4,7 @@ import Footer from '@components/Footer'
 import Image from 'next/image'
 
 import styles from "@styles/index.module.scss"
+import { Button } from '@mui/material'
 
 export default function Home() {
   return (
@@ -17,11 +18,17 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet"></link>
       </Head>
 
-      <main>
+     
+      <main className={styles.main}>
         <Header />
-        <img className={styles.icon} src="https://media.discordapp.net/attachments/857511147879137310/1129644501737144330/icon.png?width=675&height=675" alt="" />
+        <div className={styles.logo}>
+        <img className={styles.icon} src="/logo.png" alt="" />
+        <h1 className={styles.title}>Meal Ninja</h1>
+        </div>
+        <a href="/chat">
+        <Button variant="contained">Go To App</Button>
+        </a>
         
-        <h1 className={styles.title}>Find Your Meal Prep</h1>
         
       </main>
 

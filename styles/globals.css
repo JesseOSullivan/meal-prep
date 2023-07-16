@@ -51,6 +51,41 @@ main {
   flex-direction: column;
   align-items: center;
   /* border: 2px solid blue; */
-  min-height: 100vh;
+  height: 85vh;
   background: #21262B;
+}
+
+nav {
+  background: #161A1D;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+}
+
+nav > a{
+  background: #161A1D;
+  height: 15vh;
+  display: grid;
+  place-content: center start;
+  align-content: center;
+  grid-template-columns: max-content 1fr;
+  gap: 1rem;
+  padding: 0 2rem;
+  width: fit-content;
+}
+
+nav > a > p {
+  /* //border: 2px solid red; */
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  place-self: center start;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+
+a{
+  color: currentColor;
+  text-decoration: none;
 }
