@@ -49,6 +49,15 @@
                 object-fit: scale-down;
                 place-self: start;
             }
+            @media only screen and (max-width: 767px) {
+                // Write your mobile-specific CSS styles here
+                img{
+                    width: 28px;
+                }
+                }
+                p {
+                    font-size: 0.8rem;
+                }
             p  {
                 color: #eee;
                 //border: 1px solid red;
@@ -71,6 +80,14 @@
     grid-template-columns: 1fr max-content;
     //border: 2px solid red;
     gap: 1rem;
+}
+
+// Mobile Phone Sizes
+@media only screen and (max-width: 767px) {
+  // Write your mobile-specific CSS styles here
+  .inputWrapper{
+    grid-template-columns: 1fr;
+  }
 }
 
 .sendButton{
